@@ -1,0 +1,234 @@
+import java.nio.file.Paths
+import java.nio.file.Files
+
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+}
+
+evaluationDependsOn(":ZeroCore2-1.20")
+evaluationDependsOn(":ExtremeReactors2-1.20")
+
+file('build.properties').withReader {
+
+    def properties = new Properties()
+	
+    properties.load(it)
+    project.ext.config = new ConfigSlurper().parse properties
+}
+
+version = "${config.minecraft_version}-${config.mod_version_major}.${config.mod_version_minor}.${config.mod_version_patch}"
+group = 'it.zerono.mods.extremereactors.compat.create'
+archivesBaseName = 'ExtremeReactors2-CreateCompat'
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+minecraft {
+
+    mappings channel: 'official', version: config.minecraft_mappings
+
+    def runPath = Paths.get(System.getenv('mc_runs'), "forge")
+
+    if (!Files.exists(runPath)) {
+        runPath = Paths.get("${rootProject.projectDir}", "runs")
+
+        if (!Files.exists(runPath)) {
+            Files.createDirectories(runPath)
+        }
+    }
+
+    def clientRunDir = runPath.resolve("client-${config.minecraft_version}").toFile();
+    def serverRunDir = runPath.resolve("server-${config.minecraft_version}").toFile();
+
+    if (!clientRunDir.exists()) {
+        clientRunDir.mkdirs();
+    }
+
+    if (!serverRunDir.exists()) {
+        serverRunDir.mkdirs();
+    }
+
+    runs {
+        client {
+
+            properties 'mixin.env.remapRefMap': 'true'
+            property 'mixin.env.refMapRemappingFile', "${project.projectDir}/build/createSrgToMcp/output.srg"
+
+            workingDirectory clientRunDir
+
+            ideaModule "${rootProject.name}.${project.name}.main".replace(' ', '_')
+
+            mods {
+                zerocore {
+                    source project(':ZeroCore2-1.20').sourceSets.main
+                }
+
+                bigreactors {
+                    source project(':ExtremeReactors2-1.20').sourceSets.main
+                }
+
+                er2create {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        server {
+
+            properties 'mixin.env.remapRefMap': 'true'
+            property 'mixin.env.refMapRemappingFile', "${project.projectDir}/build/createSrgToMcp/output.srg"
+            
+			workingDirectory serverRunDir
+
+            ideaModule "${rootProject.name}.${project.name}.main".replace(' ', '_')
+
+            mods {
+                zerocore {
+                    source project(':ZeroCore2-1.20').sourceSets.main
+                }
+
+                bigreactors {
+                    source project(':ExtremeReactors2-1.20').sourceSets.main
+                }
+
+                er2create {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        data {
+
+            properties 'mixin.env.remapRefMap': 'true'
+            property 'mixin.env.refMapRemappingFile', "${project.projectDir}/build/createSrgToMcp/output.srg"
+
+            workingDirectory clientRunDir
+
+            ideaModule "${rootProject.name}.${project.name}.main".replace(' ', '_')
+
+            args '--mod', 'er2create', '--all',
+                    '--existing', file('src/main/resources/'),
+                    '--existing', file('src/generated/resources/'),
+                    '--output', file('src/generated/resources/')
+
+            mods {
+                zerocore {
+                    source project(':ZeroCore2-1.20').sourceSets.main
+                }
+
+                bigreactors {
+                    source project(':ExtremeReactors2-1.20').sourceSets.main
+                }
+
+                er2create {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+sourceSets.main.resources {
+    srcDir 'src/generated/resources'
+}
+
+processResources {
+
+	inputs.property "mod_version", version
+	inputs.property "mod_name", config.mod_name
+    inputs.property "minecraft_versionrange", config.minecraft_versionrange
+	inputs.property "forge_versionrange", config.forge_versionrange
+    inputs.property "loader_versionrange", config.loader_versionrange
+	inputs.property "zerocore_versionrange", config.zerocore_versionrange
+
+    from(sourceSets.main.resources.srcDirs) {
+	
+        include 'ExtremeReactors2-CreateCompat-1.20/src/main/resources/META-INF/mods.toml'
+        expand 'mod_version': version, 
+				'mod_name': config.mod_name,
+				'minecraft_versionrange': config.minecraft_versionrange,
+				'forge_versionrange': config.forge_versionrange,
+                'loader_versionrange': config.loader_versionrange,
+				'zerocore_versionrange': config.zerocore_versionrange
+    }
+}
+
+repositories {
+
+    // JEI
+    maven {
+        // location of the maven that hosts JEI files
+        name = "Progwml6 maven"
+        url = "https://dvs1.progwml6.com/files/maven/"
+    }
+
+    maven {
+        name = "ModMaven"
+        url = "https://modmaven.dev"
+    }
+
+    // cursemaven
+    maven {
+        url 'https://www.cursemaven.com'
+    }
+
+    // Create
+    repositories {
+        maven {
+            name = 'tterrag maven'
+            url = 'https://maven.tterrag.com/'
+        }
+    }
+}
+
+dependencies {
+	minecraft "net.minecraftforge:forge:${config.minecraft_version}-${config.forge_version}"
+    implementation project(':ZeroCore2-1.20')
+    implementation project(':ExtremeReactors2-1.20')
+
+    // JEI
+    runtimeOnly(fg.deobf("mezz.jei:jei-${config.minecraft_version}-forge:${config.jei_version}"))
+
+    // Create
+    implementation fg.deobf("com.simibubi.create:create-${config.minecraft_version}:${config.create_version}:slim") { transitive = false }
+    implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-${config.minecraft_version}:${config.flywheel_version}")
+    implementation fg.deobf("com.tterrag.registrate:Registrate:${config.registrate_version}")
+}
+
+jar {
+    manifest {
+        attributes 'Specification-Title': config.mod_name
+        attributes 'Specification-Vendor': 'ZeroNoRyouki'
+        attributes 'Specification-Version': "2"
+        attributes 'Implementation-Title': config.mod_name
+        attributes 'Implementation-Vendor': 'ZeroNoRyouki'
+        attributes 'Implementation-Version': version
+        attributes 'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+    }
+
+    finalizedBy('reobfJar')
+}
+
+publish.dependsOn('reobfJar')
+
+publishing {
+
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = archivesBaseName
+            artifact jar
+        }
+    }
+
+    repositories {
+        maven {
+            url 'file://' + System.getenv('mc_maven')
+        }
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+}
