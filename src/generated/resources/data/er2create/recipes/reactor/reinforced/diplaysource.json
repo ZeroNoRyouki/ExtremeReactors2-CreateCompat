@@ -1,0 +1,46 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "forge:tag_empty",
+            "tag": "forge:ingots/steel"
+          }
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "building",
+        "key": {
+          "C": {
+            "item": "bigreactors:reinforced_reactorcasing"
+          },
+          "G": {
+            "tag": "forge:storage_blocks/gold"
+          },
+          "M": {
+            "tag": "forge:ingots/steel"
+          },
+          "X": {
+            "item": "bigreactors:wrench"
+          },
+          "Z": {
+            "tag": "forge:dusts/glowstone"
+          }
+        },
+        "pattern": [
+          "CZC",
+          "MGM",
+          "CXC"
+        ],
+        "result": {
+          "item": "er2create:reinforced_reactordisplaysource"
+        },
+        "show_notification": true
+      }
+    }
+  ]
+}

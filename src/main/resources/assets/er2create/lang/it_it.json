@@ -1,0 +1,45 @@
+{
+  "_comment": "Extreme Reactors Create Compat Language File - Italian",
+  "_comment": "@author ZeroNoRyouki",
+  "_comment": "-- please don't translate the _comment lines ! --",
+
+  "itemGroup.er2create.general": "Extreme Reactors - Create compat",
+
+  "_comment": "Blocks",
+  "block.er2create.basic_reactordisplaysource": "Sorgente per il Tabellone del Reattore (Base)",
+  "block.er2create.reinforced_reactordisplaysource": "Sorgente per il Tabellone del Reattore (Rinforzato)",
+
+  "_comment": "Display sources",
+  "er2create.display_source.reactor.reactor_status": "Stato del Reattore",
+  "er2create.display_source.reactor.reactor_status.value1.passive": "Energia prodotta: %s",
+  "er2create.display_source.reactor.reactor_status.value2.passive": "Energia immagazzinata: %s",
+  "er2create.display_source.reactor.reactor_status.value3.passive": "Buffer interno: %s%% pieno",
+  "er2create.display_source.reactor.reactor_status.value1.active": "Vapore prodotto: %s",
+  "er2create.display_source.reactor.reactor_status.value2.active": "Vapore immagazzinato: %s",
+  "er2create.display_source.reactor.reactor_status.value3.active": "Refrigerante immagazzinato: %s",
+  "er2create.display_source.reactor.reactor_status.value4": "Tasso di consumo del combustibile: %s",
+  "er2create.display_source.reactor.reactor_status.value5": "Temperatura del nocciolo: %s",
+
+  "er2create.display_source.reactor.core_fuel_status": "Stato del combustibile nel nocciolo del Reattore",
+  "er2create.display_source.reactor.core_fuel_status.value1": "  %s %% pieno",
+  "er2create.display_source.reactor.core_fuel_status.value2": "  %s %% irradiato",
+  "er2create.display_source.reactor.core_fuel_status.value3": "Barre di controllo: %d",
+  "er2create.display_source.reactor.core_fuel_status.value4": "Capacità max: %s",
+  "er2create.display_source.reactor.core_fuel_status.value5": "Carburante: %s",
+  "er2create.display_source.reactor.core_fuel_status.value6": "Scorie: %s",
+  "er2create.display_source.reactor.core_fuel_status.value7": "Totale: %s",
+
+  "er2create.display_source.reactor.fuel_amount": "Quantità del combustibile",
+  "er2create.display_source.reactor.fuel_percentage": "Quantità del combustibile (%)",
+  "er2create.display_source.reactor.waste_amount": "Quantità delle scorie",
+  "er2create.display_source.reactor.waste_percentage": "Quantità delle scorie (%)",
+  "er2create.display_source.reactor.energy_stored": "Energia immagazzinata",
+  "er2create.display_source.reactor.energy_percentage": "Energia immagazzinata (%)",
+  "er2create.display_source.reactor.vapor_stored": "Vapore immagazzinato",
+  "er2create.display_source.reactor.coolant_stored": "Refrigerante immagazzinato",
+  "er2create.display_source.reactor.core_temperature": "Temperatura del nocciolo",
+  "er2create.display_source.reactor.casing_temperature": "Temperatura dell'involucro",
+  "er2create.display_source.reactor.fuel_burnup_rate": "Tasso di consumo del combustibile",
+  "er2create.display_source.reactor.energy_generated": "Energia prodotta",
+  "er2create.display_source.reactor.vapor_generated": "Vapore prodotto"
+}

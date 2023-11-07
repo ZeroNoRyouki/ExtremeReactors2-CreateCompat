@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "er2create:reinforced_reactordisplaysource"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "er2create:blocks/reinforced_reactordisplaysource"
+}

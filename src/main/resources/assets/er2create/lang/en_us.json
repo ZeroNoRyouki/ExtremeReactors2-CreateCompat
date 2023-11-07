@@ -1,0 +1,45 @@
+{
+  "_comment": "Extreme Reactors Create Compat Language File - English",
+  "_comment": "@author ZeroNoRyouki",
+  "_comment": "-- please don't translate the _comment lines ! --",
+
+  "itemGroup.er2create.general": "Extreme Reactors - Create compat",
+
+  "_comment": "Blocks",
+  "block.er2create.basic_reactordisplaysource": "Reactor Display Source (Basic)",
+  "block.er2create.reinforced_reactordisplaysource": "Reactor Display Source (Reinforced)",
+
+  "_comment": "Display sources",
+  "er2create.display_source.reactor.reactor_status": "Reactor Status",
+  "er2create.display_source.reactor.reactor_status.value1.passive": "Energy generated: %s",
+  "er2create.display_source.reactor.reactor_status.value2.passive": "Energy stored: %s",
+  "er2create.display_source.reactor.reactor_status.value3.passive": "Energy buffer: %s%% full",
+  "er2create.display_source.reactor.reactor_status.value1.active": "Vapor generated: %s",
+  "er2create.display_source.reactor.reactor_status.value2.active": "Vapor stored: %s",
+  "er2create.display_source.reactor.reactor_status.value3.active": "Coolant stored: %s",
+  "er2create.display_source.reactor.reactor_status.value4": "Fuel burnup rate: %s",
+  "er2create.display_source.reactor.reactor_status.value5": "Core heat: %s",
+
+  "er2create.display_source.reactor.core_fuel_status": "Reactor Core Fuel Status",
+  "er2create.display_source.reactor.core_fuel_status.value1": "  %s %% full",
+  "er2create.display_source.reactor.core_fuel_status.value2": "  %s %% depleted",
+  "er2create.display_source.reactor.core_fuel_status.value3": "Fuel Rods: %d",
+  "er2create.display_source.reactor.core_fuel_status.value4": "Max Capacity: %s",
+  "er2create.display_source.reactor.core_fuel_status.value5": "Fuel: %s",
+  "er2create.display_source.reactor.core_fuel_status.value6": "Waste: %s",
+  "er2create.display_source.reactor.core_fuel_status.value7": "Total: %s",
+
+  "er2create.display_source.reactor.fuel_amount": "Fuel amount",
+  "er2create.display_source.reactor.fuel_percentage": "Fuel amount (%)",
+  "er2create.display_source.reactor.waste_amount": "Waste amount",
+  "er2create.display_source.reactor.waste_percentage": "Waste amount (%)",
+  "er2create.display_source.reactor.energy_stored": "Energy stored",
+  "er2create.display_source.reactor.energy_percentage": "Energy stored (%)",
+  "er2create.display_source.reactor.vapor_stored": "Vapor stored",
+  "er2create.display_source.reactor.coolant_stored": "Coolant stored",
+  "er2create.display_source.reactor.core_temperature": "Core heat",
+  "er2create.display_source.reactor.casing_temperature": "Casing heat",
+  "er2create.display_source.reactor.fuel_burnup_rate": "Fuel burnup rate",
+  "er2create.display_source.reactor.energy_generated": "Energy generated",
+  "er2create.display_source.reactor.vapor_generated": "Vapor generated"
+}
