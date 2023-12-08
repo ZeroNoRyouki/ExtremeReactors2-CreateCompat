@@ -24,5 +24,7 @@ public class ItemTagsDataProvider
 
         builder.apply(ContentTags.Items.USING_REACTOR_CASING_BASIC).add(CreateContent.Items.REACTOR_DISPLAYSOURCE_BASIC);
         builder.apply(ContentTags.Items.USING_REACTOR_CASING_REINFORCED).add(CreateContent.Items.REACTOR_DISPLAYSOURCE_REINFORCED);
+        builder.apply(ContentTags.Items.USING_TURBINE_CASING_BASIC).add(CreateContent.Items.TURBINE_DISPLAYSOURCE_BASIC);
+        builder.apply(ContentTags.Items.USING_TURBINE_CASING_REINFORCED).add(CreateContent.Items.TURBINE_DISPLAYSOURCE_REINFORCED);
     }
 }

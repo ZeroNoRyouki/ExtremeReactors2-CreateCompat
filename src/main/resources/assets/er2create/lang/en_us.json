@@ -8,6 +8,8 @@
   "_comment": "Blocks",
   "block.er2create.basic_reactordisplaysource": "Reactor Display Source (Basic)",
   "block.er2create.reinforced_reactordisplaysource": "Reactor Display Source (Reinforced)",
+  "block.er2create.basic_turbinedisplaysource": "Turbine Display Source (Basic)",
+  "block.er2create.reinforced_turbinedisplaysource": "Turbine Display Source (Reinforced)",
 
   "_comment": "Display sources",
   "er2create.display_source.reactor.reactor_status": "Reactor Status",
@@ -29,6 +31,7 @@
   "er2create.display_source.reactor.core_fuel_status.value6": "Waste: %s",
   "er2create.display_source.reactor.core_fuel_status.value7": "Total: %s",
 
+  "er2create.display_source.reactor.active": "Active",
   "er2create.display_source.reactor.fuel_amount": "Fuel amount",
   "er2create.display_source.reactor.fuel_percentage": "Fuel amount (%)",
   "er2create.display_source.reactor.waste_amount": "Waste amount",
@@ -41,5 +44,29 @@
   "er2create.display_source.reactor.casing_temperature": "Casing heat",
   "er2create.display_source.reactor.fuel_burnup_rate": "Fuel burnup rate",
   "er2create.display_source.reactor.energy_generated": "Energy generated",
-  "er2create.display_source.reactor.vapor_generated": "Vapor generated"
+  "er2create.display_source.reactor.vapor_generated": "Vapor generated",
+
+  "er2create.display_source.turbine.turbine_status": "Turbine Status",
+  "er2create.display_source.turbine.turbine_status.value1": "Energy generated: %s",
+  "er2create.display_source.turbine.turbine_status.value2": "Energy stored: %s",
+  "er2create.display_source.turbine.turbine_status.value3": "Energy buffer: %s%% full",
+  "er2create.display_source.turbine.turbine_status.value4": "Vapor stored: %s",
+  "er2create.display_source.turbine.turbine_status.value5": "Coolant stored: %s",
+  "er2create.display_source.turbine.turbine_status.value6": "Vent settings: ",
+  "er2create.display_source.turbine.turbine_status.value7": "Rotor speed: %s",
+  "er2create.display_source.turbine.turbine_status.value8": "Vapor max intake rate: %s",
+  "er2create.display_source.turbine.turbine_status.value9": "Inductor coils: ",
+
+  "er2create.display_source.turbine.active": "Active",
+  "er2create.display_source.turbine.energy_stored": "Energy stored",
+  "er2create.display_source.turbine.energy_percentage": "Energy stored (%)",
+  "er2create.display_source.turbine.vapor_stored": "Vapor stored",
+  "er2create.display_source.turbine.coolant_stored": "Coolant stored",
+  "er2create.display_source.turbine.energy_generated": "Energy generated",
+  "er2create.display_source.turbine.vapor_max_intake_rate": "Vapor max intake rate",
+  "er2create.display_source.turbine.rotor_speed": "Rotor speed",
+  "er2create.display_source.turbine.rotor_blades_count": "Rotor blades count",
+  "er2create.display_source.turbine.rotor_efficiency": "Rotor efficiency",
+  "er2create.display_source.turbine.vent_settings": "Vent settings",
+  "er2create.display_source.turbine.inductor_mode": "Inductor mode"
 }

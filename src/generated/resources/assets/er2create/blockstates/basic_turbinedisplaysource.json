@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "er2create:block/turbine/basic/displaysource"
+    }
+  }
+}

@@ -34,11 +34,18 @@ import net.minecraft.world.level.block.state.BlockState;
 import java.util.Collections;
 import java.util.List;
 
+import static it.zerono.mods.extremereactors.compat.create.ExtremeReactorsCreateCompat.NOT_AVAILABLE_TEXT;
+
 public class ReactorDisplaySourceEntity
         extends AbstractReactorEntity {
 
     public ReactorDisplaySourceEntity(BlockPos position, BlockState blockState) {
         super(CreateContent.TileEntityTypes.REACTOR_DISPLAYSOURCE.get(), position, blockState);
+    }
+
+    public MutableComponent getActivationStatus(DisplayTargetStats stats) {
+        return Component.translatable(this.isReactorActive() ?
+                "gui.bigreactors.reactor.active" : "gui.bigreactors.reactor.inactive");
     }
 
     public float getEnergyStoredPercentage() {
@@ -163,7 +170,7 @@ public class ReactorDisplaySourceEntity
         final List<List<MutableComponent>> lines = new ObjectArrayList<>(9);
 
         lines.add(List.of(Component.translatable("er2create.display_source.reactor.reactor_status")));
-        lines.add(List.of(DisplaySource.EMPTY_LINE));
+        lines.add(DisplaySource.EMPTY);
 
         if (controller.getOperationalMode().isPassive()) {
 
@@ -203,7 +210,7 @@ public class ReactorDisplaySourceEntity
                     CodeHelper.formatAsMillibuckets(coolantAmount))));
         }
 
-        lines.add(List.of(DisplaySource.EMPTY_LINE));
+        lines.add(DisplaySource.EMPTY);
 
         final float fuelConsumed = controller.getUiStats().getFuelConsumedLastTick();
         final double fuelHeat = controller.getFuelHeatValue().getAsDouble();
@@ -215,6 +222,11 @@ public class ReactorDisplaySourceEntity
         // core heat
         lines.add(List.of(Component.translatable("er2create.display_source.reactor.reactor_status.value5",
                 String.format("%.0f C", fuelHeat))));
+
+        lines.add(DisplaySource.EMPTY);
+
+        lines.add(List.of(Component.translatable(controller.isMachineActive() ?
+                "gui.bigreactors.reactor.active" : "gui.bigreactors.reactor.inactive")));
 
         return lines;
     }
@@ -237,7 +249,7 @@ public class ReactorDisplaySourceEntity
         lines.add(List.of(Component.translatable("er2create.display_source.reactor.core_fuel_status.value2",
                 String.format("%.2f", wasteAmount / reactantsAmount * 100.0f))));
 
-        lines.add(List.of(DisplaySource.EMPTY_LINE));
+        lines.add(DisplaySource.EMPTY);
 
         // rods count
         lines.add(List.of(Component.translatable("er2create.display_source.reactor.core_fuel_status.value3",
@@ -261,8 +273,6 @@ public class ReactorDisplaySourceEntity
 
         return lines;
     }
-
-    private static final String NOT_AVAILABLE_TEXT = "?";
 
     //endregion
 }

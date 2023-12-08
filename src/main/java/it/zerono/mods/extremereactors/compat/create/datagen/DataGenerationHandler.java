@@ -1,8 +1,8 @@
 package it.zerono.mods.extremereactors.compat.create.datagen;
 
-import it.zerono.mods.extremereactors.compat.create.datagen.client.ReactorModelsDataProvider;
+import it.zerono.mods.extremereactors.compat.create.datagen.client.MultiblockModelsDataProvider;
 import it.zerono.mods.extremereactors.compat.create.datagen.loot.BlockSubProvider;
-import it.zerono.mods.extremereactors.compat.create.datagen.recipe.ReactorRecipesDataProvider;
+import it.zerono.mods.extremereactors.compat.create.datagen.recipe.MultiblockRecipesDataProvider;
 import it.zerono.mods.extremereactors.compat.create.datagen.tag.BlockTagsDataProvider;
 import it.zerono.mods.extremereactors.compat.create.datagen.tag.ItemTagsDataProvider;
 import it.zerono.mods.zerocore.lib.datagen.IModDataGenerator;
@@ -26,10 +26,10 @@ public class DataGenerationHandler
 
         // recipes
 
-        generator.addProvider(ReactorRecipesDataProvider::new);
+        generator.addProvider(MultiblockRecipesDataProvider::new);
 
         // block states and models
 
-        generator.addProvider(ReactorModelsDataProvider::new);
+        generator.addProvider(MultiblockModelsDataProvider::new);
     }
 }

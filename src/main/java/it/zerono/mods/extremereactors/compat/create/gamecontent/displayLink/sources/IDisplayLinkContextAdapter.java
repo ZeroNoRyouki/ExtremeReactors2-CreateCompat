@@ -21,6 +21,7 @@ package it.zerono.mods.extremereactors.compat.create.gamecontent.displayLink.sou
 import com.simibubi.create.content.redstone.displayLink.DisplayLinkContext;
 import com.simibubi.create.content.redstone.displayLink.target.DisplayTargetStats;
 import it.zerono.mods.extremereactors.compat.create.gamecontent.displayLink.ReactorDisplaySourceEntity;
+import it.zerono.mods.extremereactors.compat.create.gamecontent.displayLink.TurbineDisplaySourceEntity;
 
 import java.util.Optional;
 import java.util.function.BiFunction;
@@ -30,6 +31,7 @@ import java.util.function.Function;
 public interface IDisplayLinkContextAdapter<Part> {
 
     IDisplayLinkContextAdapter<ReactorDisplaySourceEntity> REACTOR = () -> ReactorDisplaySourceEntity.class;
+    IDisplayLinkContextAdapter<TurbineDisplaySourceEntity> TURBINE = () -> TurbineDisplaySourceEntity.class;
 
     Class<Part> getMultiblockPartClass();
 

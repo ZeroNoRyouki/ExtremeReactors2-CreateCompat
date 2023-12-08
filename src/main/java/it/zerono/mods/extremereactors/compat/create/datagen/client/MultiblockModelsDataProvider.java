@@ -11,12 +11,12 @@ import net.minecraft.world.level.block.Block;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 
-public class ReactorModelsDataProvider
+public class MultiblockModelsDataProvider
         extends AbstractMultiblockModelsDataProvider {
 
-    public ReactorModelsDataProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider,
-                                     ResourceLocationBuilder modLocationRoot) {
-        super(ExtremeReactorsCreateCompat.MOD_NAME + " Reactor block states and models", output, lookupProvider, modLocationRoot);
+    public MultiblockModelsDataProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider,
+                                        ResourceLocationBuilder modLocationRoot) {
+        super(ExtremeReactorsCreateCompat.MOD_NAME + " Multiblock block states and models", output, lookupProvider, modLocationRoot);
     }
 
     //region BlockStateDataProvider
@@ -31,11 +31,17 @@ public class ReactorModelsDataProvider
         variant = "reactor/basic";
         this.displaySource(CreateContent.Blocks.REACTOR_DISPLAYSOURCE_BASIC, variant);
 
+        variant = "turbine/basic";
+        this.displaySource(CreateContent.Blocks.TURBINE_DISPLAYSOURCE_BASIC, variant);
+
         //endregion
         //region reinforced
 
         variant = "reactor/reinforced";
         this.displaySource(CreateContent.Blocks.REACTOR_DISPLAYSOURCE_REINFORCED, variant);
+
+        variant = "turbine/reinforced";
+        this.displaySource(CreateContent.Blocks.TURBINE_DISPLAYSOURCE_REINFORCED, variant);
 
         //endregion
     }

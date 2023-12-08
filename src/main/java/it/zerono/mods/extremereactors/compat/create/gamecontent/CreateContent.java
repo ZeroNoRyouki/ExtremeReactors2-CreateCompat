@@ -24,6 +24,7 @@ import com.simibubi.create.content.redstone.displayLink.target.DisplayTargetStat
 import it.zerono.mods.extremereactors.ExtremeReactors;
 import it.zerono.mods.extremereactors.compat.create.ExtremeReactorsCreateCompat;
 import it.zerono.mods.extremereactors.compat.create.gamecontent.displayLink.ReactorDisplaySourceEntity;
+import it.zerono.mods.extremereactors.compat.create.gamecontent.displayLink.TurbineDisplaySourceEntity;
 import it.zerono.mods.extremereactors.compat.create.gamecontent.displayLink.sources.IDisplayLinkContextAdapter;
 import it.zerono.mods.extremereactors.compat.create.gamecontent.displayLink.sources.MultiblockMultiLineDisplaySource;
 import it.zerono.mods.extremereactors.compat.create.gamecontent.displayLink.sources.MultiblockPercentOrProgressBarDisplaySource;
@@ -31,6 +32,9 @@ import it.zerono.mods.extremereactors.compat.create.gamecontent.displayLink.sour
 import it.zerono.mods.extremereactors.gamecontent.multiblock.reactor.IReactorPartType;
 import it.zerono.mods.extremereactors.gamecontent.multiblock.reactor.MultiblockReactor;
 import it.zerono.mods.extremereactors.gamecontent.multiblock.reactor.variant.ReactorVariant;
+import it.zerono.mods.extremereactors.gamecontent.multiblock.turbine.ITurbinePartType;
+import it.zerono.mods.extremereactors.gamecontent.multiblock.turbine.MultiblockTurbine;
+import it.zerono.mods.extremereactors.gamecontent.multiblock.turbine.variant.TurbineVariant;
 import it.zerono.mods.zerocore.base.multiblock.part.GenericDeviceBlock;
 import it.zerono.mods.zerocore.lib.block.ModBlock;
 import it.zerono.mods.zerocore.lib.block.multiblock.MultiblockPartBlock;
@@ -89,11 +93,23 @@ public final class CreateContent {
         public static final RegistryObject<GenericDeviceBlock<MultiblockReactor, IReactorPartType>> REACTOR_DISPLAYSOURCE_REINFORCED =
                 registerReactorBlock("reinforced_reactordisplaysource", ReactorVariant.Reinforced, CreateReactorPartType.DisplaySource);
 
+        public static final RegistryObject<GenericDeviceBlock<MultiblockTurbine, ITurbinePartType>> TURBINE_DISPLAYSOURCE_BASIC =
+                registerTurbineBlock("basic_turbinedisplaysource", TurbineVariant.Basic, CreateTurbinePartType.DisplaySource);
+
+        public static final RegistryObject<GenericDeviceBlock<MultiblockTurbine, ITurbinePartType>> TURBINE_DISPLAYSOURCE_REINFORCED =
+                registerTurbineBlock("reinforced_turbinedisplaysource", TurbineVariant.Reinforced, CreateTurbinePartType.DisplaySource);
+
         //region internals
 
         @SuppressWarnings("unchecked")
         private static <T extends MultiblockPartBlock<MultiblockReactor, IReactorPartType>>
         RegistryObject<T> registerReactorBlock(String name, ReactorVariant variant, IReactorPartType partType) {
+            return BLOCKS.register(name, () -> (T) (partType.createBlock(variant)));
+        }
+
+        @SuppressWarnings("unchecked")
+        private static <T extends MultiblockPartBlock<MultiblockTurbine, ITurbinePartType>>
+        RegistryObject<T> registerTurbineBlock(String name, TurbineVariant variant, ITurbinePartType partType) {
             return BLOCKS.register(name, () -> (T) (partType.createBlock(variant)));
         }
 
@@ -114,6 +130,12 @@ public final class CreateContent {
 
         public static final RegistryObject<BlockItem> REACTOR_DISPLAYSOURCE_REINFORCED =
                 registerItemBlock("reinforced_reactordisplaysource", () -> Blocks.REACTOR_DISPLAYSOURCE_REINFORCED::get);
+
+        public static final RegistryObject<BlockItem> TURBINE_DISPLAYSOURCE_BASIC =
+                registerItemBlock("basic_turbinedisplaysource", () -> Blocks.TURBINE_DISPLAYSOURCE_BASIC::get);
+
+        public static final RegistryObject<BlockItem> TURBINE_DISPLAYSOURCE_REINFORCED =
+                registerItemBlock("reinforced_turbinedisplaysource", () -> Blocks.TURBINE_DISPLAYSOURCE_REINFORCED::get);
 
         //region internals
 
@@ -137,6 +159,11 @@ public final class CreateContent {
                 registerBlockEntity("reactordisplaysource", ReactorDisplaySourceEntity::new,
                         () -> Blocks.REACTOR_DISPLAYSOURCE_BASIC::get,
                         () -> Blocks.REACTOR_DISPLAYSOURCE_REINFORCED::get);
+
+        public static final RegistryObject<BlockEntityType<TurbineDisplaySourceEntity>> TURBINE_DISPLAYSOURCE =
+                registerBlockEntity("turbinedisplaysource", TurbineDisplaySourceEntity::new,
+                        () -> Blocks.TURBINE_DISPLAYSOURCE_BASIC::get,
+                        () -> Blocks.TURBINE_DISPLAYSOURCE_REINFORCED::get);
 
         //region internals
 
@@ -176,6 +203,7 @@ public final class CreateContent {
 
                 reactorMultiLineSource("reactor_status", ReactorDisplaySourceEntity::getReactorStatus);
                 reactorMultiLineSource("core_fuel_status", ReactorDisplaySourceEntity::getCoreFuelStatus);
+                reactorSingleLineSource("active", ReactorDisplaySourceEntity::getActivationStatus);
                 reactorSingleLineSource("fuel_amount", ReactorDisplaySourceEntity::getFuelAmount);
                 reactorPercentageSource("fuel_percentage", ReactorDisplaySourceEntity::getFuelPercentage);
                 reactorSingleLineSource("waste_amount", ReactorDisplaySourceEntity::getWasteAmount);
@@ -189,6 +217,20 @@ public final class CreateContent {
                 reactorSingleLineSource("fuel_burnup_rate", ReactorDisplaySourceEntity::getFuelBurnupRate);
                 reactorSingleLineSource("energy_generated", ReactorDisplaySourceEntity::getEnergyGenerated);
                 reactorSingleLineSource("vapor_generated", ReactorDisplaySourceEntity::getVaporGenerated);
+
+                turbineMultiLineSource("turbine_status", TurbineDisplaySourceEntity::getTurbineStatus);
+                turbineSingleLineSource("active", TurbineDisplaySourceEntity::getActivationStatus);
+                turbineSingleLineSource("energy_stored", TurbineDisplaySourceEntity::getEnergyStored);
+                turbinePercentageSource("energy_percentage", TurbineDisplaySourceEntity::getEnergyStoredPercentage);
+                turbineSingleLineSource("vapor_stored", TurbineDisplaySourceEntity::getVaporStored);
+                turbineSingleLineSource("coolant_stored", TurbineDisplaySourceEntity::getCoolantStored);
+                turbineSingleLineSource("energy_generated", TurbineDisplaySourceEntity::getEnergyGenerated);
+                turbineSingleLineSource("vapor_max_intake_rate", TurbineDisplaySourceEntity::getMaxIntakeRate);
+                turbineSingleLineSource("rotor_speed", TurbineDisplaySourceEntity::getRotorSpeed);
+                turbineSingleLineSource("rotor_blades_count", TurbineDisplaySourceEntity::getRotorBladesCount);
+                turbineSingleLineSource("rotor_efficiency", TurbineDisplaySourceEntity::getRotorEfficiency);
+                turbineSingleLineSource("vent_settings", TurbineDisplaySourceEntity::getVentSetting);
+                turbineSingleLineSource("inductor_mode", TurbineDisplaySourceEntity::getInductorMode);
             }
         }
 
@@ -209,6 +251,25 @@ public final class CreateContent {
         private static <T extends DisplaySource> void reactorSource(String name, T displaySource) {
             registerDisplaySource("reactor." + name, displaySource, Blocks.REACTOR_DISPLAYSOURCE_BASIC,
                     Blocks.REACTOR_DISPLAYSOURCE_REINFORCED);
+        }
+
+        private static void turbinePercentageSource(String name, Function<TurbineDisplaySourceEntity, Float> mapper) {
+            turbineSource(name, new MultiblockPercentOrProgressBarDisplaySource<>(IDisplayLinkContextAdapter.TURBINE, mapper));
+        }
+
+        private static void turbineSingleLineSource(String name,
+                                                    BiFunction<TurbineDisplaySourceEntity, DisplayTargetStats, MutableComponent> mapper) {
+            turbineSource(name, new MultiblockSingleLineDisplaySource<>(IDisplayLinkContextAdapter.TURBINE, mapper));
+        }
+
+        private static void turbineMultiLineSource(String name,
+                                                   BiFunction<TurbineDisplaySourceEntity, DisplayTargetStats, List<List<MutableComponent>>> mapper) {
+            turbineSource(name, new MultiblockMultiLineDisplaySource<>(IDisplayLinkContextAdapter.TURBINE, mapper));
+        }
+
+        private static <T extends DisplaySource> void turbineSource(String name, T displaySource) {
+            registerDisplaySource("turbine." + name, displaySource, Blocks.TURBINE_DISPLAYSOURCE_BASIC,
+                    Blocks.TURBINE_DISPLAYSOURCE_REINFORCED);
         }
 
         @SafeVarargs
@@ -241,6 +302,8 @@ public final class CreateContent {
 
                         output.accept(Items.REACTOR_DISPLAYSOURCE_BASIC.get());
                         output.accept(Items.REACTOR_DISPLAYSOURCE_REINFORCED.get());
+                        output.accept(Items.TURBINE_DISPLAYSOURCE_BASIC.get());
+                        output.accept(Items.TURBINE_DISPLAYSOURCE_REINFORCED.get());
                     })
                     .build()
             );

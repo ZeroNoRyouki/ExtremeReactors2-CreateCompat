@@ -29,6 +29,8 @@ public class ExtremeReactorsCreateCompat {
     public static final String MOD_NAME = "Extreme Reactors Create Compat";
     public static ResourceLocationBuilder ROOT_LOCATION = ResourceLocationBuilder.of(MOD_ID);
 
+    public static final String NOT_AVAILABLE_TEXT = "?";
+
     public ExtremeReactorsCreateCompat() {
 
 

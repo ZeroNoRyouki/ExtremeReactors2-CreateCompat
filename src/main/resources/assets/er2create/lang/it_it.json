@@ -8,6 +8,8 @@
   "_comment": "Blocks",
   "block.er2create.basic_reactordisplaysource": "Sorgente per il Tabellone del Reattore (Base)",
   "block.er2create.reinforced_reactordisplaysource": "Sorgente per il Tabellone del Reattore (Rinforzato)",
+  "block.er2create.basic_turbinedisplaysource": "Turbine Display Source (Basic)",
+  "block.er2create.reinforced_turbinedisplaysource": "Turbine Display Source (Reinforced)",
 
   "_comment": "Display sources",
   "er2create.display_source.reactor.reactor_status": "Stato del Reattore",
@@ -29,6 +31,7 @@
   "er2create.display_source.reactor.core_fuel_status.value6": "Scorie: %s",
   "er2create.display_source.reactor.core_fuel_status.value7": "Totale: %s",
 
+  "er2create.display_source.reactor.active": "Attiva",
   "er2create.display_source.reactor.fuel_amount": "Quantità del combustibile",
   "er2create.display_source.reactor.fuel_percentage": "Quantità del combustibile (%)",
   "er2create.display_source.reactor.waste_amount": "Quantità delle scorie",
@@ -41,5 +44,29 @@
   "er2create.display_source.reactor.casing_temperature": "Temperatura dell'involucro",
   "er2create.display_source.reactor.fuel_burnup_rate": "Tasso di consumo del combustibile",
   "er2create.display_source.reactor.energy_generated": "Energia prodotta",
-  "er2create.display_source.reactor.vapor_generated": "Vapore prodotto"
+  "er2create.display_source.reactor.vapor_generated": "Vapore prodotto",
+
+  "er2create.display_source.turbine.turbine_status": "Stato della Turbina",
+  "er2create.display_source.turbine.turbine_status.value1": "Energia prodotta: %s",
+  "er2create.display_source.turbine.turbine_status.value2": "Energia immagazzinata: %s",
+  "er2create.display_source.turbine.turbine_status.value3": "Buffer interno: %s%% pieno",
+  "er2create.display_source.turbine.turbine_status.value4": "Vapore immagazzinato: %s",
+  "er2create.display_source.turbine.turbine_status.value5": "Refrigerante immagazzinato: %s",
+  "er2create.display_source.turbine.turbine_status.value6": "Impostazioni di rilascio: ",
+  "er2create.display_source.turbine.turbine_status.value7": "Velocità del rotore: %s",
+  "er2create.display_source.turbine.turbine_status.value8": "Massimo vapore utilizzabile: %s",
+  "er2create.display_source.turbine.turbine_status.value9": "Bobine di induzione: ",
+
+  "er2create.display_source.turbine.active": "Attiva",
+  "er2create.display_source.turbine.energy_stored": "Energia immagazzinata",
+  "er2create.display_source.turbine.energy_percentage": "Energia immagazzinata (%)",
+  "er2create.display_source.turbine.vapor_stored": "Vapore immagazzinato",
+  "er2create.display_source.turbine.coolant_stored": "Refrigerante immagazzinato",
+  "er2create.display_source.turbine.energy_generated": "Energia prodotta",
+  "er2create.display_source.turbine.vapor_max_intake_rate": "Massimo vapore utilizzabile",
+  "er2create.display_source.turbine.rotor_speed": "Velocità del rotore",
+  "er2create.display_source.turbine.rotor_blades_count": "Numero di pale del rotore",
+  "er2create.display_source.turbine.rotor_efficiency": "Efficienza del rotore",
+  "er2create.display_source.turbine.vent_settings": "Impostazioni di rilascio",
+  "er2create.display_source.turbine.inductor_mode": "Bobine di induzione"
 }
