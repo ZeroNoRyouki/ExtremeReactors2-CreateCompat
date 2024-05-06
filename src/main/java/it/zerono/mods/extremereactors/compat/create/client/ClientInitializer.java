@@ -25,6 +25,7 @@ import it.zerono.mods.extremereactors.compat.create.client.model.CreateTurbineMo
 import it.zerono.mods.extremereactors.gamecontent.multiblock.reactor.variant.ReactorVariant;
 import it.zerono.mods.extremereactors.gamecontent.multiblock.turbine.variant.TurbineVariant;
 import it.zerono.mods.zerocore.lib.client.model.ICustomModelBuilder;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -33,7 +34,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @SuppressWarnings("unused")
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientInitializer {
 
     @SubscribeEvent
