@@ -8,7 +8,7 @@ loaderVersion="[47,49)"
 license="All rights reserved"
 
 # A URL to refer people to when problems occur with this mod
-issueTrackerURL="https://github.com/ZeroNoRyouki/ExtremeReactors2"
+issueTrackerURL="https://github.com/ZeroNoRyouki/ExtremeReactors2-CreateCompat/issues"
 logoFile="logo.png"
 
 [[mods]]
@@ -40,7 +40,7 @@ logoFile="logo.png"
 
     modId="zerocore"
     mandatory=true
-    versionRange="[1.20.1-2.1.41,1.21-2.2.0)"
+    versionRange="[1.20.1-2.1.44,1.21-2.2.0)"
     ordering="AFTER"
     side="BOTH"
 
@@ -48,7 +48,7 @@ logoFile="logo.png"
 
     modId="bigreactors"
     mandatory=true
-    versionRange="[1.20.1-2.0.77,1.21-2.1.0)"
+    versionRange="[1.20.1-2.0.80,1.21-2.1.0)"
     ordering="AFTER"
     side="BOTH"
 
