@@ -53,6 +53,10 @@ public class MultiblockRecipesDataProvider
                 Content.Items.REACTOR_CASING_REINFORCED, metal, fallbackMetal);
         this.turbineDisplaySource(builder, TurbineVariant.Reinforced, CreateContent.Items.TURBINE_DISPLAYSOURCE_REINFORCED,
                 Content.Items.TURBINE_CASING_REINFORCED, metal, fallbackMetal);
+
+        // Energizer part
+
+        this.energizerDisplaySource(builder, CreateContent.Items.ENERGIZER_DISPLAYSOURCE, Content.Items.ENERGIZER_CASING);
     }
 
     //region internals
@@ -67,6 +71,28 @@ public class MultiblockRecipesDataProvider
                                       Supplier<? extends ItemLike> result, Supplier<? extends ItemLike> casing,
                                       TagKey<Item> metal, @Nullable TagKey<Item> fallbackMetal) {
         this.displaySource(builder, this.turbineRoot(variant), result, casing, metal, fallbackMetal);
+    }
+
+    private void energizerDisplaySource(Consumer<FinishedRecipe> builder,
+                                        Supplier<? extends ItemLike> result, Supplier<? extends ItemLike> casing) {
+        this.displaySource(builder, this.energizerRoot(), result, casing, Tags.Items.INGOTS_IRON);
+    }
+
+    private void displaySource(Consumer<FinishedRecipe> builder, ResourceLocationBuilder idBuilder,
+                               Supplier<? extends ItemLike> result, Supplier<? extends ItemLike> casing,
+                               TagKey<Item> metal) {
+
+        this.shaped(RecipeCategory.BUILDING_BLOCKS, result)
+                .define('C', casing.get())
+                .define('M', metal)
+                .define('G', Tags.Items.STORAGE_BLOCKS_GOLD)
+                .define('Z', Tags.Items.DUSTS_GLOWSTONE)
+                .define('X', Content.Items.WRENCH.get())
+                .pattern("CZC")
+                .pattern("MGM")
+                .pattern("CXC")
+                .unlockedBy("has_item", has(casing.get()))
+                .save(builder, idBuilder.buildWithSuffix("diplaysource"));
     }
 
     private void displaySource(Consumer<FinishedRecipe> builder, ResourceLocationBuilder idBuilder,

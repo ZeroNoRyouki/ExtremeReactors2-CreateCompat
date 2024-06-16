@@ -3,6 +3,7 @@
     "er2create:basic_reactordisplaysource",
     "er2create:reinforced_reactordisplaysource",
     "er2create:basic_turbinedisplaysource",
-    "er2create:reinforced_turbinedisplaysource"
+    "er2create:reinforced_turbinedisplaysource",
+    "er2create:energizerdisplaysource"
   ]
 }

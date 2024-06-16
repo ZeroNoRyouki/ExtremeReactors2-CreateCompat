@@ -8,8 +8,9 @@
   "_comment": "Blocks",
   "block.er2create.basic_reactordisplaysource": "Sorgente per il Tabellone del Reattore (Base)",
   "block.er2create.reinforced_reactordisplaysource": "Sorgente per il Tabellone del Reattore (Rinforzato)",
-  "block.er2create.basic_turbinedisplaysource": "Turbine Display Source (Basic)",
-  "block.er2create.reinforced_turbinedisplaysource": "Turbine Display Source (Reinforced)",
+  "block.er2create.basic_turbinedisplaysource": "Sorgente per il Tabellone della Turbina (Base)",
+  "block.er2create.reinforced_turbinedisplaysource": "Sorgente per il Tabellone della Turbina (Rinforzato)",
+  "block.er2create.energizerdisplaysource": "Sorgente per il Tabellone del Energizer",
 
   "_comment": "Display sources",
   "er2create.display_source.reactor.reactor_status": "Stato del Reattore",
@@ -68,5 +69,21 @@
   "er2create.display_source.turbine.rotor_blades_count": "Numero di pale del rotore",
   "er2create.display_source.turbine.rotor_efficiency": "Efficienza del rotore",
   "er2create.display_source.turbine.vent_settings": "Impostazioni di rilascio",
-  "er2create.display_source.turbine.inductor_mode": "Bobine di induzione"
+  "er2create.display_source.turbine.inductor_mode": "Bobine di induzione",
+
+  "er2create.display_source.energizer.energizer_status": "Stato dell'Energizer",
+  "er2create.display_source.energizer.energizer_status.value1": "Energia immagazzinata: %s",
+  "er2create.display_source.energizer.energizer_status.value2": "I/O energia: %s",
+  "er2create.display_source.energizer.energizer_status.value3": "Capacità di immagazzinamento: %s",
+  "er2create.display_source.energizer.energizer_status.value4": "Buffer interno: %s%% pieno",
+  "er2create.display_source.energizer.energizer_status.value5": "Energia inserita: %s/t",
+  "er2create.display_source.energizer.energizer_status.value6": "Energia estratta: %s/t",
+
+  "er2create.display_source.energizer.active": "Attivo",
+  "er2create.display_source.energizer.energy_stored": "Energia immagazzinata",
+  "er2create.display_source.energizer.energy_percentage": "Energia immagazzinata (%)",
+  "er2create.display_source.energizer.energy_capacity": "Capacità di immagazzinamento",
+  "er2create.display_source.energizer.energy_io": "I/O energia",
+  "er2create.display_source.energizer.energy_inserted": "Energia inserita",
+  "er2create.display_source.energizer.energy_extracted": "Energia estratta"
 }

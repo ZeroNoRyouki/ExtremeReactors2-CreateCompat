@@ -18,5 +18,6 @@ public class BlockSubProvider
 
         this.dropSelf(CreateContent.Blocks.REACTOR_DISPLAYSOURCE_BASIC, CreateContent.Blocks.REACTOR_DISPLAYSOURCE_REINFORCED);
         this.dropSelf(CreateContent.Blocks.TURBINE_DISPLAYSOURCE_BASIC, CreateContent.Blocks.TURBINE_DISPLAYSOURCE_REINFORCED);
+        this.dropSelf(CreateContent.Blocks.ENERGIZER_DISPLAYSOURCE);
     }
 }

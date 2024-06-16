@@ -44,13 +44,18 @@ public class MultiblockModelsDataProvider
         this.displaySource(CreateContent.Blocks.TURBINE_DISPLAYSOURCE_REINFORCED, variant);
 
         //endregion
+        //region energizer
+
+        this.displaySource(CreateContent.Blocks.ENERGIZER_DISPLAYSOURCE, "energizer");
+
+        //endregion
     }
 
     //endregion
     //region internals
 
     protected <B extends Block> void displaySource(final Supplier<? extends Block> block, final String subFolder) {
-        this.genericPart(block, "displaysource", subFolder);
+        this.genericPart(block, "displaysource", subFolder, "_assembled");
     }
 
     //endregion

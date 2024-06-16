@@ -10,6 +10,7 @@
   "block.er2create.reinforced_reactordisplaysource": "Reactor Display Source (Reinforced)",
   "block.er2create.basic_turbinedisplaysource": "Turbine Display Source (Basic)",
   "block.er2create.reinforced_turbinedisplaysource": "Turbine Display Source (Reinforced)",
+  "block.er2create.energizerdisplaysource": "Energizer Display Source",
 
   "_comment": "Display sources",
   "er2create.display_source.reactor.reactor_status": "Reactor Status",
@@ -68,5 +69,21 @@
   "er2create.display_source.turbine.rotor_blades_count": "Rotor blades count",
   "er2create.display_source.turbine.rotor_efficiency": "Rotor efficiency",
   "er2create.display_source.turbine.vent_settings": "Vent settings",
-  "er2create.display_source.turbine.inductor_mode": "Inductor mode"
+  "er2create.display_source.turbine.inductor_mode": "Inductor mode",
+
+  "er2create.display_source.energizer.energizer_status": "Energizer Status",
+  "er2create.display_source.energizer.energizer_status.value1": "Energy stored: %s",
+  "er2create.display_source.energizer.energizer_status.value2": "Energy I/O: %s",
+  "er2create.display_source.energizer.energizer_status.value3": "Storage capacity: %s",
+  "er2create.display_source.energizer.energizer_status.value4": "Energy buffer: %s%% full",
+  "er2create.display_source.energizer.energizer_status.value5": "Energy inserted: %s",
+  "er2create.display_source.energizer.energizer_status.value6": "Energy extracted: %s",
+
+  "er2create.display_source.energizer.active": "Active",
+  "er2create.display_source.energizer.energy_stored": "Energy stored",
+  "er2create.display_source.energizer.energy_percentage": "Energy stored (%)",
+  "er2create.display_source.energizer.energy_capacity": "Storage capacity",
+  "er2create.display_source.energizer.energy_io": "Energy I/O",
+  "er2create.display_source.energizer.energy_inserted": "Energy inserted",
+  "er2create.display_source.energizer.energy_extracted": "Energy extracted"
 }

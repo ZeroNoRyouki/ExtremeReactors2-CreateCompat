@@ -20,17 +20,24 @@ package it.zerono.mods.extremereactors.compat.create.client.model;
 
 import it.zerono.mods.extremereactors.ExtremeReactors;
 import it.zerono.mods.extremereactors.gamecontent.multiblock.common.client.model.AbstractMultiblockModelBuilder;
-import it.zerono.mods.extremereactors.gamecontent.multiblock.common.variant.IMultiblockGeneratorVariant;
+import it.zerono.mods.extremereactors.gamecontent.multiblock.common.variant.IMultiblockFluidGeneratorVariant;
 import it.zerono.mods.zerocore.lib.block.multiblock.IMultiblockPartType;
 import it.zerono.mods.zerocore.lib.data.ResourceLocationBuilder;
 
 public abstract class CreateMultiblockModelBuilder<PartType extends IMultiblockPartType>
         extends AbstractMultiblockModelBuilder<PartType> {
 
-    protected CreateMultiblockModelBuilder(String multiblockShortName, IMultiblockGeneratorVariant variant,
+    protected CreateMultiblockModelBuilder(String multiblockShortName,
                                            ResourceLocationBuilder root, ResourceLocationBuilder blockRoot) {
         super(multiblockShortName, root, blockRoot, ExtremeReactors.ROOT_LOCATION
-                .appendPath("block", "reactor", variant.getName())
+                .appendPath("block", multiblockShortName)
+                .buildWithSuffix("assembledplating"), true);
+    }
+
+    protected CreateMultiblockModelBuilder(String multiblockShortName, IMultiblockFluidGeneratorVariant variant,
+                                           ResourceLocationBuilder root, ResourceLocationBuilder blockRoot) {
+        super(multiblockShortName, root, blockRoot, ExtremeReactors.ROOT_LOCATION
+                .appendPath("block", multiblockShortName, variant.getName())
                 .buildWithSuffix("assembledplating"), true);
     }
 }

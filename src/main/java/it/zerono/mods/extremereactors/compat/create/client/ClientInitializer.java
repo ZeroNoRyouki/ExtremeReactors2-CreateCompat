@@ -20,8 +20,10 @@ package it.zerono.mods.extremereactors.compat.create.client;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Streams;
+import it.zerono.mods.extremereactors.compat.create.client.model.CreateEnergizerModelBuilder;
 import it.zerono.mods.extremereactors.compat.create.client.model.CreateReactorModelBuilder;
 import it.zerono.mods.extremereactors.compat.create.client.model.CreateTurbineModelBuilder;
+import it.zerono.mods.extremereactors.gamecontent.multiblock.energizer.variant.EnergizerVariant;
 import it.zerono.mods.extremereactors.gamecontent.multiblock.reactor.variant.ReactorVariant;
 import it.zerono.mods.extremereactors.gamecontent.multiblock.turbine.variant.TurbineVariant;
 import it.zerono.mods.zerocore.lib.client.model.ICustomModelBuilder;
@@ -51,7 +53,8 @@ public class ClientInitializer {
 
     private static final List<ICustomModelBuilder> s_modelBuilders = Streams.concat(
                 Arrays.stream(ReactorVariant.values()).map(CreateReactorModelBuilder::new),
-                Arrays.stream(TurbineVariant.values()).map(CreateTurbineModelBuilder::new)
+                Arrays.stream(TurbineVariant.values()).map(CreateTurbineModelBuilder::new),
+                Arrays.stream(EnergizerVariant.values()).map(CreateEnergizerModelBuilder::new)
             )
             .collect(ImmutableList.toImmutableList());
 

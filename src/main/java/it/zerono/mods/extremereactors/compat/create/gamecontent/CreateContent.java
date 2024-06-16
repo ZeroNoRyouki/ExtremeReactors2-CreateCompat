@@ -23,12 +23,16 @@ import com.simibubi.create.content.redstone.displayLink.source.DisplaySource;
 import com.simibubi.create.content.redstone.displayLink.target.DisplayTargetStats;
 import it.zerono.mods.extremereactors.ExtremeReactors;
 import it.zerono.mods.extremereactors.compat.create.ExtremeReactorsCreateCompat;
+import it.zerono.mods.extremereactors.compat.create.gamecontent.displayLink.EnergizerDisplaySourceEntity;
 import it.zerono.mods.extremereactors.compat.create.gamecontent.displayLink.ReactorDisplaySourceEntity;
 import it.zerono.mods.extremereactors.compat.create.gamecontent.displayLink.TurbineDisplaySourceEntity;
 import it.zerono.mods.extremereactors.compat.create.gamecontent.displayLink.sources.IDisplayLinkContextAdapter;
 import it.zerono.mods.extremereactors.compat.create.gamecontent.displayLink.sources.MultiblockMultiLineDisplaySource;
 import it.zerono.mods.extremereactors.compat.create.gamecontent.displayLink.sources.MultiblockPercentOrProgressBarDisplaySource;
 import it.zerono.mods.extremereactors.compat.create.gamecontent.displayLink.sources.MultiblockSingleLineDisplaySource;
+import it.zerono.mods.extremereactors.gamecontent.multiblock.energizer.IEnergizerPartType;
+import it.zerono.mods.extremereactors.gamecontent.multiblock.energizer.MultiBlockEnergizer;
+import it.zerono.mods.extremereactors.gamecontent.multiblock.energizer.variant.EnergizerVariant;
 import it.zerono.mods.extremereactors.gamecontent.multiblock.reactor.IReactorPartType;
 import it.zerono.mods.extremereactors.gamecontent.multiblock.reactor.MultiblockReactor;
 import it.zerono.mods.extremereactors.gamecontent.multiblock.reactor.variant.ReactorVariant;
@@ -99,6 +103,9 @@ public final class CreateContent {
         public static final RegistryObject<GenericDeviceBlock<MultiblockTurbine, ITurbinePartType>> TURBINE_DISPLAYSOURCE_REINFORCED =
                 registerTurbineBlock("reinforced_turbinedisplaysource", TurbineVariant.Reinforced, CreateTurbinePartType.DisplaySource);
 
+        public static final RegistryObject<GenericDeviceBlock<MultiBlockEnergizer, IEnergizerPartType>> ENERGIZER_DISPLAYSOURCE =
+                registerEnergizerBlock("energizerdisplaysource", CreateEnergizerPartType.DisplaySource);
+
         //region internals
 
         @SuppressWarnings("unchecked")
@@ -111,6 +118,12 @@ public final class CreateContent {
         private static <T extends MultiblockPartBlock<MultiblockTurbine, ITurbinePartType>>
         RegistryObject<T> registerTurbineBlock(String name, TurbineVariant variant, ITurbinePartType partType) {
             return BLOCKS.register(name, () -> (T) (partType.createBlock(variant)));
+        }
+
+        @SuppressWarnings("unchecked")
+        private static <T extends MultiblockPartBlock<MultiBlockEnergizer, IEnergizerPartType>>
+        RegistryObject<T> registerEnergizerBlock(String name, IEnergizerPartType partType) {
+            return BLOCKS.register(name, () -> (T) (partType.createBlock(EnergizerVariant.INSTANCE)));
         }
 
         //endregion
@@ -136,6 +149,9 @@ public final class CreateContent {
 
         public static final RegistryObject<BlockItem> TURBINE_DISPLAYSOURCE_REINFORCED =
                 registerItemBlock("reinforced_turbinedisplaysource", () -> Blocks.TURBINE_DISPLAYSOURCE_REINFORCED::get);
+
+        public static final RegistryObject<BlockItem> ENERGIZER_DISPLAYSOURCE =
+                registerItemBlock("energizerdisplaysource", () -> Blocks.ENERGIZER_DISPLAYSOURCE::get);
 
         //region internals
 
@@ -164,6 +180,10 @@ public final class CreateContent {
                 registerBlockEntity("turbinedisplaysource", TurbineDisplaySourceEntity::new,
                         () -> Blocks.TURBINE_DISPLAYSOURCE_BASIC::get,
                         () -> Blocks.TURBINE_DISPLAYSOURCE_REINFORCED::get);
+
+        public static final RegistryObject<BlockEntityType<EnergizerDisplaySourceEntity>> ENERGIZER_DISPLAYSOURCE =
+                registerBlockEntity("energizerdisplaysource", EnergizerDisplaySourceEntity::new,
+                        () -> Blocks.ENERGIZER_DISPLAYSOURCE::get);
 
         //region internals
 
@@ -231,6 +251,15 @@ public final class CreateContent {
                 turbineSingleLineSource("rotor_efficiency", TurbineDisplaySourceEntity::getRotorEfficiency);
                 turbineSingleLineSource("vent_settings", TurbineDisplaySourceEntity::getVentSetting);
                 turbineSingleLineSource("inductor_mode", TurbineDisplaySourceEntity::getInductorMode);
+
+                energizerMultiLineSource("energizer_status", EnergizerDisplaySourceEntity::getEnergizerStatus);
+                energizerPercentageSource("energy_percentage", EnergizerDisplaySourceEntity::getEnergyStoredPercentage);
+                energizerSingleLineSource("energy_stored", EnergizerDisplaySourceEntity::getEnergyStored);
+                energizerSingleLineSource("active", EnergizerDisplaySourceEntity::getActivationStatus);
+                energizerSingleLineSource("energy_capacity", EnergizerDisplaySourceEntity::getEnergyCapacity);
+                energizerSingleLineSource("energy_inserted", EnergizerDisplaySourceEntity::getEnergyInsertedLastTick);
+                energizerSingleLineSource("energy_extracted", EnergizerDisplaySourceEntity::getEnergyExtractedLastTick);
+                energizerSingleLineSource("energy_io", EnergizerDisplaySourceEntity::getEnergyIoRate);
             }
         }
 
@@ -272,6 +301,24 @@ public final class CreateContent {
                     Blocks.TURBINE_DISPLAYSOURCE_REINFORCED);
         }
 
+        private static void energizerPercentageSource(String name, Function<EnergizerDisplaySourceEntity, Float> mapper) {
+            energizerSource(name, new MultiblockPercentOrProgressBarDisplaySource<>(IDisplayLinkContextAdapter.ENERGIZER, mapper));
+        }
+
+        private static void energizerSingleLineSource(String name,
+                                                      BiFunction<EnergizerDisplaySourceEntity, DisplayTargetStats, MutableComponent> mapper) {
+            energizerSource(name, new MultiblockSingleLineDisplaySource<>(IDisplayLinkContextAdapter.ENERGIZER, mapper));
+        }
+
+        private static void energizerMultiLineSource(String name,
+                                                     BiFunction<EnergizerDisplaySourceEntity, DisplayTargetStats, List<List<MutableComponent>>> mapper) {
+            energizerSource(name, new MultiblockMultiLineDisplaySource<>(IDisplayLinkContextAdapter.ENERGIZER, mapper));
+        }
+
+        private static <T extends DisplaySource> void energizerSource(String name, T displaySource) {
+            registerDisplaySource("energizer." + name, displaySource, Blocks.ENERGIZER_DISPLAYSOURCE);
+        }
+
         @SafeVarargs
         private static <T extends DisplaySource, B extends Block> void registerDisplaySource(String name, T displaySource,
                                                                                              Supplier<B>... blocks) {
@@ -304,6 +351,7 @@ public final class CreateContent {
                         output.accept(Items.REACTOR_DISPLAYSOURCE_REINFORCED.get());
                         output.accept(Items.TURBINE_DISPLAYSOURCE_BASIC.get());
                         output.accept(Items.TURBINE_DISPLAYSOURCE_REINFORCED.get());
+                        output.accept(Items.ENERGIZER_DISPLAYSOURCE.get());
                     })
                     .build()
             );
